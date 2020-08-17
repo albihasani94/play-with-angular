@@ -34,12 +34,17 @@
                             <img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName'
                                 [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
                         </td>
-                        <td>{{ product.productName | uppercase }}</td>
+                        <td>
+                            <a [routerLink]="['/products', product.productId]">
+                                {{ product.productName | uppercase }}
+                            </a>
+                        </td>
                         <td>{{ product.productCode | lowercase | convertToSpaces: '-' }}</td>
                         <td>{{ product.releaseDate }}</td>
                         <td>{{ product.price | currency:'EUR':'symbol':'1.2-2' | lowercase }}</td>
-                        <td><pm-star [rating] = 'product.starRating'
-                            (ratingClicked)='onRatingClicked($event)'></pm-star></td>
+                        <td>
+                            <pm-star [rating]='product.starRating' (ratingClicked)='onRatingClicked($event)'></pm-star>
+                        </td>
                     </tr>
                 </tbody>
             </table>
